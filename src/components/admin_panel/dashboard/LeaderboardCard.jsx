@@ -143,7 +143,7 @@ const studentData = [
         ))}
       </div>
 
-      <div className="mt-4 flex justify-center gap-4">
+      <div className="mt-4 flex flex-col sm:flex-row justify-center gap-4">
         <div className="flex flex-col justify-center items-center gap-1 flex-1 bg-amber-100 border-amber-300 border rounded-md h-40 ">
           🏆
         <h1 className="text-amber-700 font-bold ">Top Scorer</h1>

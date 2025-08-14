@@ -1,9 +1,10 @@
-import { Home, Medal, Users, BarChart2, Settings, LogOut, Trophy } from "lucide-react";
+import { Home, Users, BarChart2, Settings, LogOut, Trophy, X } from "lucide-react";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { SheetClose } from "../ui/sheet";
 
-const Sidebar = ({ activePage, setActivePage }) => {
+const Sidebar = ({ activePage, setActivePage, isMobile = false }) => {
   // Navigation items with icons and labels
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: <Home className="h-5 w-5" /> },
@@ -17,6 +18,13 @@ const Sidebar = ({ activePage, setActivePage }) => {
     <div className="h-full w-64 bg-white border-r flex flex-col">
       {/* Logo and header */}
       <div className="p-4 flex items-center space-x-3">
+        {isMobile && (
+          <SheetClose asChild>
+            <Button variant="ghost" size="icon" className="absolute right-4 top-4">
+              <X className="h-5 w-5" />
+            </Button>
+          </SheetClose>
+        )}
         <div className="rounded-lg bg-gradient p-2">
           <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
@@ -28,7 +36,7 @@ const Sidebar = ({ activePage, setActivePage }) => {
         </div>
       </div>
 
-    <Separator />
+      <Separator />
       {/* Navigation links */}
       <nav className="mt-5 flex-1">
         <ul className="space-y-1 px-4">
@@ -62,16 +70,22 @@ const Sidebar = ({ activePage, setActivePage }) => {
             <p className="text-sm font-medium text-gray-900 truncate">School Admin</p>
             <p className="text-xs text-gradient truncate">Greenwood Elementary</p>
           </div>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-gray-500">
-                <LogOut className="h-5 w-5" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Logout</p>
-            </TooltipContent>
-          </Tooltip>
+          {!isMobile ? (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-gray-500">
+                  <LogOut className="h-5 w-5" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Logout</p>
+              </TooltipContent>
+            </Tooltip>
+          ) : (
+            <Button variant="ghost" size="icon" className="text-gray-500">
+              <LogOut className="h-5 w-5" />
+            </Button>
+          )}
         </div>
       </div>
     </div>
