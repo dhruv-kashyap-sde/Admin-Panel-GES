@@ -1,113 +1,58 @@
 import { Eye } from "lucide-react";
+import { useStudentContext } from "../../../context/StudentContext";
+import { useState } from "react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
 
 export default function StudentGrid() {
-  // Sample students data based on the image provided
-  const students = [
-    {
-      id: 1,
-      name: "Ahan Ku...",
-      class: "Class 8",
-      accuracy: 96,
-      xp: 830,
-      image: "https://i.pravatar.cc/100?img=11",
-    },
-    {
-      id: 2,
-      name: "Hvrf",
-      class: "Class 7",
-      accuracy: 94,
-      xp: 295,
-      image: null, // Will use initials
-      initials: "HV",
-    },
-    {
-      id: 3,
-      name: "Flower Girl",
-      class: "Class 6",
-      accuracy: 93,
-      xp: 190,
-      image: "https://i.pravatar.cc/100?img=5",
-    },
-    {
-      id: 4,
-      name: "12 June C...",
-      class: "Class 5",
-      accuracy: 92,
-      xp: 165,
-      image: "https://i.pravatar.cc/100?img=12",
-    },
-    {
-      id: 5,
-      name: "Hcdff",
-      class: "Class 4",
-      accuracy: 91,
-      xp: 160,
-      image: "https://i.pravatar.cc/100?img=30",
-    },
-    {
-      id: 6,
-      name: "Eva",
-      class: "Class 3",
-      accuracy: 90,
-      xp: 145,
-      image: "https://i.pravatar.cc/100?img=9",
-    },
-    {
-      id: 7,
-      name: "Sophia Kim",
-      class: "Class 2",
-      accuracy: 89,
-      xp: 138,
-      image: "https://i.pravatar.cc/100?img=32",
-    },
-    {
-      id: 8,
-      name: "James Wi...",
-      class: "Class 6",
-      accuracy: 88,
-      xp: 132,
-      image: "https://i.pravatar.cc/100?img=15",
-    },
-    {
-      id: 9,
-      name: "Olivia Davis",
-      class: "Class 5",
-      accuracy: 87,
-      xp: 128,
-      image: "https://i.pravatar.cc/100?img=16",
-    },
-    {
-      id: 10,
-      name: "Liam Garcia",
-      class: "Class 1",
-      accuracy: 86,
-      xp: 120,
-      image: "https://i.pravatar.cc/100?img=17",
-    },
-    {
-      id: 11,
-      name: "Ava Marti...",
-      class: "Class 3",
-      accuracy: 85,
-      xp: 4100,
-      image: "https://i.pravatar.cc/100?img=18",
-    },
-    {
-      id: 12,
-      name: "Noah Tho...",
-      class: "Class 4",
-      accuracy: 83,
-      xp: 3950,
-      image: "https://i.pravatar.cc/100?img=19",
-    },
-  ];
+  const { students } = useStudentContext();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedClass, setSelectedClass] = useState("All Classes");
+
+  // Format student names to match the display format in the grid
+  const formatStudentName = (name) => {
+    if (name.length > 10) {
+      return `${name.substring(0, 8)}...`;
+    }
+    return name;
+  };
+
+  // Format class to display format
+  const formatClass = (classNum) => `Class ${classNum}`;
+
+  // Filter students based on search query and selected class
+  const filteredStudents = students.filter((student) => {
+    const matchesSearch = student.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const matchesClass =
+      selectedClass === "All Classes" ||
+      formatClass(student.class) === selectedClass;
+    return matchesSearch && matchesClass;
+  });
+
+  // Prepare students for display in grid
+  const displayStudents = filteredStudents.map((student) => ({
+    id: student.id,
+    name: formatStudentName(student.name),
+    class: formatClass(student.class),
+    accuracy: student.accuracy,
+    xp: student.xp,
+    image: student.image,
+    initials: student.initials || student.name.substring(0, 2).toUpperCase(),
+  }));
 
   // Function to determine badge color based on accuracy
   const getBadgeColor = (accuracy) => {
     if (accuracy >= 90) return "bg-green-100 text-green-500"; // Green for ≥90%
     if (accuracy >= 80) return "bg-blue-100 text-blue-500"; // Blue for 80-89%
-    return "bg-orange-500"; // Orange for <80%
+    return "bg-orange-100 text-orange-500"; // Orange for <80%
   };
+
+  // Generate all class options from student data
+  const classOptions = [
+    "All Classes",
+    ...new Set(students.map((student) => formatClass(student.class))),
+  ];
 
   return (
     <div className="bg-surface rounded-xl shadow-sm p-6 border border-border">
@@ -128,35 +73,31 @@ export default function StudentGrid() {
               type="text"
               placeholder="Search students..."
               className="rounded-md border border-gray-300 px-4 py-2 w-[250px] max-w-full"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 
-          {/* Class Filter */}
-          <div className="relative">
-            <button className="rounded-md border border-gray-300 px-4 py-2 flex items-center gap-2">
-              <span>All Classes</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="ml-2"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </button>
+          <div>
+            <Select value={selectedClass} onValueChange={setSelectedClass}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select class" />
+              </SelectTrigger>
+              <SelectContent>
+                {classOptions.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         </div>
       </div>
 
       {/* Student Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {students.map((student) => (
+        {displayStudents.map((student) => (
           <div
             key={student.id}
             className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-4"
@@ -186,7 +127,7 @@ export default function StudentGrid() {
                 <span
                   className={`${getBadgeColor(
                     student.accuracy
-                  )} px-2 py-0.5 rounded-full  text-xs font-bold mt-1 w-fit`}
+                  )} px-2 py-0.5 rounded-full text-xs font-bold mt-1 w-fit`}
                 >
                   {student.accuracy}%
                 </span>
