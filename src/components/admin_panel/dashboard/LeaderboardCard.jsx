@@ -21,7 +21,7 @@ export default function LeaderboardCard() {
         ))}
       </div>
 
-      <div className="mt-4 flex flex-col sm:flex-row justify-center gap-4">
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-4">
         <div className="p-2 flex flex-col justify-center items-center gap-1 flex-1 bg-amber-100 border-amber-300 border rounded-md h-40 ">
           🏆
         <h1 className="text-amber-700 font-bold ">Top Scorer</h1>

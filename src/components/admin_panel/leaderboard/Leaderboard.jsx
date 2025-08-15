@@ -43,7 +43,7 @@ const Leaderboard = () => {
           {/* 2nd Place - Left */}
           <div className="flex flex-col items-center relative">
             {/* Medal */}
-            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm z-10">
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-gray-400 rounded-md flex items-center justify-center text-white font-bold text-sm z-10">
               🥈
             </div>
             {/* Profile Circle */}
@@ -55,7 +55,7 @@ const Leaderboard = () => {
               />
             </div>
             {/* Podium Bar */}
-            <div className="bg-gray-500 text-white text-center rounded-lg w-36 h-32 flex flex-col justify-center">
+            <div className="bg-gradient-to-b from-[#6a717d] to-[#9ba2ae] text-white text-center rounded-t-2xl w-22 sm:w-32 md:w-22 lg:w-32 h-40 flex flex-col justify-center">
               <h3 className="font-semibold text-lg">{podiumOrder[0]?.name}</h3>
               <p className="text-sm opacity-90">
                 Class {podiumOrder[0]?.class}
@@ -64,7 +64,7 @@ const Leaderboard = () => {
             </div>
           </div>
 
-          {/* 1st Place - Center (Taller) */}
+          {/* 1st Place - Center */}
           <div className="flex flex-col items-center relative">
             {/* Crown/Trophy */}
             <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-3xl z-10">
@@ -79,7 +79,7 @@ const Leaderboard = () => {
               />
             </div>
             {/* Podium Bar */}
-            <div className="bg-yellow-500 text-white text-center rounded-lg w-40 h-40 flex flex-col justify-center">
+            <div className="bg-gradient-to-b from-[#d6a913] to-[#facd11] text-white text-center rounded-t-2xl w-30 sm:w-40 md:w-30 lg:w-40 h-60 flex flex-col justify-center">
               <h3 className="font-semibold text-lg">{podiumOrder[1]?.name}</h3>
               <p className="text-sm opacity-90">
                 Class {podiumOrder[1]?.class}
@@ -104,7 +104,7 @@ const Leaderboard = () => {
               />
             </div>
             {/* Podium Bar */}
-            <div className="bg-orange-500 text-white text-center rounded-lg w-36 h-28 flex flex-col justify-center">
+            <div className="bg-gradient-to-b from-[#f67116] to-[#f29546] text-white text-center rounded-t-2xl w-22 sm:w-32 md:w-22 lg:w-32 h-40 flex flex-col justify-center">
               <h3 className="font-semibold text-lg">{podiumOrder[2]?.name}</h3>
               <p className="text-sm opacity-90">
                 Class {podiumOrder[2]?.class}
@@ -116,7 +116,7 @@ const Leaderboard = () => {
       </div>
 
       {/* Search and Filters Section */}
-      <div className="flex flex-wrap gap-4 items-center justify-between">
+      <div className="flex flex-wrap gap-4 items-center justify-between bg-surface p-4 shadow-lg rounded-md">
         {/* Search Bar */}
         <div className="flex-1 min-w-[300px]">
           <input
@@ -124,14 +124,14 @@ const Leaderboard = () => {
             placeholder="Search students..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full border border-gray-300 rounded-full px-4 py-3 shadow-sm focus:ring-2 focus:ring-blue-200 focus:border-blue-400 outline-none"
+            className="w-full border border-gray-300 rounded-md px-4 py-3 shadow-sm focus:ring-2 focus:ring-blue-200 focus:border-blue-400 outline-none"
           />
         </div>
 
         {/* Filters */}
         <div className="flex gap-4 items-center">
           <Select value={selectedClass} onValueChange={setSelectedClass}>
-            <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+            <SelectTrigger className="overflow-ellipsis min-w-[50px] rounded-md border-gray-300">
               <SelectValue placeholder="All Classes" />
             </SelectTrigger>
             <SelectContent>
@@ -148,7 +148,7 @@ const Leaderboard = () => {
           </Select>
 
           <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
-            <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+            <SelectTrigger className="overflow-ellipsis min-w-[50px] rounded-md border-gray-300">
               <SelectValue placeholder="This Month" />
             </SelectTrigger>
             <SelectContent>
@@ -159,12 +159,14 @@ const Leaderboard = () => {
             </SelectContent>
           </Select>
 
-          <button className="flex items-center gap-2 px-4 py-3 border border-gray-300 rounded-full shadow-sm hover:bg-gray-50 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-3 border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors">
             <Filter className="w-4 h-4" />
-            <span className="text-sm font-medium">More Filters</span>
+            <span className="text-sm hidden sm:block font-medium">More Filters</span>
           </button>
         </div>
-
+      </div>
+      
+      <div className="flex flex-wrap gap-4 items-center justify-between bg-surface p-4 shadow-lg rounded-md">
         {/* Rankings Section */}
         <Rankings students={students} />
       </div>

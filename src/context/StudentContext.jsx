@@ -146,17 +146,19 @@ export const StudentProvider = ({ children }) => {
   };
 
   // Function to calculate stats
-  const getStats = () => {
+const getStats = () => {
     const topScorer = [...students].sort((a, b) => b.points - a.points)[0];
     const topStreak = [...students].sort((a, b) => b.streak - a.streak)[0];
     const topLessons = [...students].sort((a, b) => b.stars - a.stars)[0];
+    const topAccuracy = [...students].sort((a, b) => b.accuracy - a.accuracy)[0];
 
     return {
-      topScorer,
-      topStreak,
-      topLessons
+        topScorer,
+        topStreak,
+        topLessons,
+        topAccuracy
     };
-  };
+};
 
   const value = {
     students,
