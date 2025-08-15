@@ -4,7 +4,7 @@ A modern, responsive school administration dashboard built with React and Tailwi
 
 ## 🌐 Live Demo
 
-**Deployed at:** [Insert Deployment Link Here]
+**Deployed at:** https://admin-panel-frontend-s2k4.onrender.com/
 
 ---
 
@@ -16,11 +16,14 @@ A modern, responsive school administration dashboard built with React and Tailwi
 ### Leaderboard with Podium Design
 ![Leaderboard](./screenshots/leaderboard.png)
 
+### Students Management (Custom Addition)
+![Students](./screenshots/students.png)
+
 ### Analytics & Charts
 ![Analytics](./screenshots/analytics.png)
 
-### Students Management (Custom Addition)
-![Students](./screenshots/students.png)
+### Settings
+![Settings](./screenshots/settings.png)
 
 ---
 
