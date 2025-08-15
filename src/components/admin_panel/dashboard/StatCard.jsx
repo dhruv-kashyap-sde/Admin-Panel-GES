@@ -1,7 +1,7 @@
 export default function StatCard({ title, value, change, icon, color }) {
 
   return (
-    <div className="bg-surface rounded-xl shadow-sm p-6 border border-border">
+    <div className="bg-surface rounded-xl shadow-lg p-6 border border-border">
       <div className="flex justify-between items-center">
         <div>
           <h5 className="text-sm tracking-wider font-bold text-neutral-600">{title.toUpperCase()}</h5>

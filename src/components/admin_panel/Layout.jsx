@@ -7,12 +7,12 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 // Import page components
 import Dashboard from './dashboard/Dashboard';
 import Leaderboard from './leaderboard/Leaderboard';
-import Students from './Students';
-import Analytics from './Analytics';
-import Settings from './Settings';
+import Students from './students/Students';
+import Analytics from './analytics/Analytics';
+import Settings from './settings/Settings';
 
 const Layout = () => {
-  const [activePage, setActivePage] = useState('leaderboard');
+  const [activePage, setActivePage] = useState('dashboard');
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   // Function to handle page changes from mobile sidebar
@@ -56,7 +56,7 @@ const Layout = () => {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="p-0 w-64">
+            <SheetContent side="left" className="p-0 w-56">
               <Sidebar activePage={activePage} setActivePage={handlePageChange} isMobile={true} />
             </SheetContent>
           </Sheet>

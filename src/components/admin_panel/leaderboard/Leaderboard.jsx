@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../ui/select";
-import Header from "../dashboard/Header";
+import Header from "../Header";
 import Rankings from "./Rankings";
 
 const Leaderboard = () => {
@@ -27,6 +27,7 @@ const Leaderboard = () => {
       <Header
         title="School Leaderboard"
         subtitle="Celebrating our top performers and encouraging healthy competition."
+        isDashboard={true}
       />
       {/* Podium Section */}
       <div className="bg-gradient-to-b from-yellow-100 to-yellow-50 rounded-t-2xl p-6 text-center border-b">

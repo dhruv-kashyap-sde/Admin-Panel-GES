@@ -153,5 +153,9 @@ body { background: linear-gradient(to bottom right, #f1f8ff, #ffffff, #f1f8ff); 
   .bg-gradient{
     @apply bg-gradient-to-r from-[#007fc8] to-[#2961e7] text-white;
   }
-  
+
+  .secondary {
+    @apply border-3 rounded border-[#c5cfd9] text-gray-800;
+  }
+
 }

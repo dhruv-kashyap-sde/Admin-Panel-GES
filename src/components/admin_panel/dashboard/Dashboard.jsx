@@ -1,5 +1,5 @@
 import { Users, BookOpen, TrendingUp, Award } from "lucide-react";
-import Header from "./Header";
+import Header from "../Header";
 import StatCard from "./StatCard";
 import ChartCard from "./ChartCard";
 import LeaderboardCard from "./LeaderboardCard";

@@ -1,4 +1,4 @@
-import { Home, Users, BarChart2, Settings, LogOut, Trophy, X } from "lucide-react";
+import { Home, Users, BarChart2, Settings, LogOut, Trophy, X, Sparkles } from "lucide-react";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
@@ -15,20 +15,17 @@ const Sidebar = ({ activePage, setActivePage, isMobile = false }) => {
   ];
 
   return (
-    <div className="h-full w-64 bg-white border-r flex flex-col">
+    <div className="h-full w-56 lg:w-64 bg-white border-r flex flex-col">
       {/* Logo and header */}
       <div className="p-4 flex items-center space-x-3">
         {isMobile && (
           <SheetClose asChild>
-            <Button variant="ghost" size="icon" className="absolute right-4 top-4">
-              <X className="h-5 w-5" />
-            </Button>
+            {/* <Button variant="ghost" size="icon" className="absolute right-4 top-4">
+            </Button> */}
           </SheetClose>
         )}
         <div className="rounded-lg bg-gradient p-2">
-          <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-          </svg>
+          <Sparkles />
         </div>
         <div>
           <h1 className="text-gradient font-bold">SpeakGenie</h1>
