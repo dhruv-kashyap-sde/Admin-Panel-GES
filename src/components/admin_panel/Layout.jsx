@@ -12,7 +12,7 @@ import Analytics from './Analytics';
 import Settings from './Settings';
 
 const Layout = () => {
-  const [activePage, setActivePage] = useState('dashboard');
+  const [activePage, setActivePage] = useState('leaderboard');
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   // Function to handle page changes from mobile sidebar
